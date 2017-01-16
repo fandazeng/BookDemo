@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="标题"
+        android:textColor="@android:color/white"
+        app:layout_textSizePercent="3%" />
+
+    <TextView
+        android:id="@+id/btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="编辑"
+        android:textColor="@android:color/white"
+        app:layout_marginRightPercent="2%"
+
+        app:layout_paddingBottomPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%"
+        app:layout_paddingTopPercent="3%"
+        app:layout_textSizePercent="2.5%" />
+
+    <TextView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="返回"
+        app:layout_paddingBottomPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%"
+        app:layout_paddingTopPercent="3%"
+        android:textColor="@android:color/white"
+        app:layout_marginLeftPercent="2%"
+        app:layout_textSizePercent="2.5%" />
+
+
+</com.zhy.android.percent.support.PercentRelativeLayout>
