@@ -1,4 +1,4 @@
-package com.fanda.zeng.bookpratice.UI;
+package com.fanda.zeng.bookpratice.ui;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
