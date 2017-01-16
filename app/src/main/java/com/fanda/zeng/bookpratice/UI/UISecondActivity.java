@@ -1,8 +1,7 @@
-package com.fanda.zeng.bookpratice.UI;
+package com.fanda.zeng.bookpratice.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.fanda.zeng.bookpratice.R;
 import com.fanda.zeng.bookpratice.activity.BaseActivity;
