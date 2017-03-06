@@ -24,7 +24,6 @@ public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
     public static final String ACTION_LOGIN_RECEIVER = "com.fanda.zeng.bookpratice.LOGIN_RECEIVER";
 
-
     private IntentFilter loginFilter;
     private OfflineReceiver offlineReceiver;
 

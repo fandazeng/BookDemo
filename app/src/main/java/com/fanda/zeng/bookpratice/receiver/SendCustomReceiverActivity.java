@@ -68,4 +68,10 @@ public class SendCustomReceiverActivity extends BaseActivity implements View.OnC
                 break;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        localBroadcastManager.unregisterReceiver(myLocalReceiver);
+    }
 }

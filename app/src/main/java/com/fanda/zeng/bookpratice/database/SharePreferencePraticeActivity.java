@@ -36,13 +36,6 @@ public class SharePreferencePraticeActivity extends BaseActivity {
         et_file_content.setText(sharedPreferences.getString("name", "") + sharedPreferences.getInt("age", 0) + sharedPreferences.getBoolean("flag", false));
     }
 
-    /**
-     * 读取文件中的数据
-     */
-    private String loadFileContent() {
-        return null;
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
