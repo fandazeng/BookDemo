@@ -20,10 +20,10 @@ import com.fanda.zeng.bookpratice.activity.BaseActivity;
 
 /**
  * Created by 曾凡达 on 2017/3/3.
- * des 补间动画演示类
+ * des 补间动画和frame动画演示类
  */
 
-public class ViewAnimationActivity extends BaseActivity implements View.OnClickListener {
+public class ViewAnimActivity extends BaseActivity implements View.OnClickListener {
 
     Button btn_alpha;
     Button btn_rotate;
