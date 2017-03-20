@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="weather_waiting">
+        <attr name="sun_radius" format="dimension"></attr>
+        <attr name="sun_line_width" format="dimension"></attr>
+        <attr name="sun_bg_from_color" format="color"></attr>
+        <attr name="sun_bg_to_color" format="color"></attr>
+        <attr name="sun_bg_src" format="reference"></attr>
+        <attr name="sun_line_count" format="integer"></attr>
+        <attr name="sun_line_distance" format="dimension"></attr>
+
+    </declare-styleable>
+    
+</resources>
