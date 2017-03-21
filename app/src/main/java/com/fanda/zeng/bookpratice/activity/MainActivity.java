@@ -11,7 +11,7 @@ import com.fanda.zeng.bookpratice.R;
 
 public class MainActivity extends BaseActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "NotificationMainActivity";
 
     private static final int REQUEST_MAIN = 1;
 
