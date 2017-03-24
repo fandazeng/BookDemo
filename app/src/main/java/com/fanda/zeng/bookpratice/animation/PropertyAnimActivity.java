@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.fanda.zeng.bookpratice.activity.BaseActivity;
 public class PropertyAnimActivity extends BaseActivity {
 
     private TextView tv_property_anim;
+    private TextView tv_scroller_anim;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,9 +37,20 @@ public class PropertyAnimActivity extends BaseActivity {
 
     private void initViewPropertyAnimator() {
         tv_property_anim = (TextView) findViewById(R.id.tv_property_anim);
+        tv_scroller_anim = (TextView) findViewById(R.id.tv_scroller_anim);
         float y = tv_property_anim.getTranslationY();
         tv_property_anim.animate().translationY(-500).translationY(y).alpha(0f).alpha(1).rotation(360).rotation(90).setDuration(5000).start();
 
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 1).setDuration(1000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                tv_scroller_anim.scrollTo((int) (100 * animation.getAnimatedFraction()), 0);
+                Log.d("scroller", (int) (100 * animation.getAnimatedFraction()) +"");
+                tv_scroller_anim.invalidate();
+            }
+        });
+        valueAnimator.start();
     }
 
     private void initPointAnimator() {
@@ -62,7 +75,7 @@ public class PropertyAnimActivity extends BaseActivity {
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(tv_property_anim, "alpha", 1f, 0f, 1f);//渐变
         ObjectAnimator rotaionAnimator = ObjectAnimator.ofFloat(tv_property_anim, "rotation", 0f, 360f, 90f);//旋转
         ObjectAnimator fadeInOutAnimator = ObjectAnimator.ofFloat(tv_property_anim, "translationY", y, -500, y);//位移
-        ObjectAnimator scaleAnimator = ObjectAnimator.ofFloat(tv_property_anim, "scaleY", 1f,3f);//缩放
+        ObjectAnimator scaleAnimator = ObjectAnimator.ofFloat(tv_property_anim, "scaleY", 1f, 3f);//缩放
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.play(alphaAnimator).with(rotaionAnimator).after(fadeInOutAnimator);
@@ -93,7 +106,7 @@ public class PropertyAnimActivity extends BaseActivity {
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                Toast.makeText(PropertyAnimActivity.this,"动画完结了！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(PropertyAnimActivity.this, "动画完结了！", Toast.LENGTH_SHORT).show();
             }
         });
         animatorSet.start();
@@ -114,5 +127,10 @@ public class PropertyAnimActivity extends BaseActivity {
         valueAnimator.setDuration(1000);
         valueAnimator.start();
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
     }
 }

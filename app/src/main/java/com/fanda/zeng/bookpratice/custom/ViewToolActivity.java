@@ -127,7 +127,7 @@ public class ViewToolActivity extends BaseActivity {
     private void initViewConfiguration() {
         ViewConfiguration viewConfiguration = ViewConfiguration.get(this);
         //该值表示系统所能识别出的被认为是滑动的最小距离
-        int touchSlop = viewConfiguration.getScaledTouchSlop();
+        int touchSlop = viewConfiguration.getScaledTouchSlop();//8dp
         //获取Fling速度的最小值和最大值
         int minimumVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
         int maximumVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
@@ -159,17 +159,18 @@ public class ViewToolActivity extends BaseActivity {
 
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        startTracker(event);
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        startTracker(event);
 //        return super.onTouchEvent(event);
-//        return gestureDetector.onTouchEvent(event);
-//    }
+        return gestureDetector.onTouchEvent(event);
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (velocityTracker != null) {//回收资源
+            velocityTracker.clear();
             velocityTracker.recycle();
             velocityTracker = null;
         }

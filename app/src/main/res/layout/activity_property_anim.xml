@@ -12,6 +12,13 @@
         android:layout_marginTop="100dp"
         android:text="属性动画" />
 
+    <TextView
+        android:id="@+id/tv_scroller_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="scroller" />
+
     <com.fanda.zeng.bookpratice.animation.MyAnimView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

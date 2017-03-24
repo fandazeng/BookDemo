@@ -8,7 +8,10 @@
         <attr name="sun_bg_src" format="reference"></attr>
         <attr name="sun_line_count" format="integer"></attr>
         <attr name="sun_line_distance" format="dimension"></attr>
+    </declare-styleable>
 
+    <declare-styleable name="CircleView">
+        <attr name="circle_color" format="color"></attr>
     </declare-styleable>
     
 </resources>
