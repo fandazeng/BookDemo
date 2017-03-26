@@ -5,6 +5,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lv_fruit_recycler_list"
+        android:layoutAnimation="@anim/list_anim"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
