@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".custom.HorizontalScrollViewExDemo">
+        <activity android:name=".chapter8.NotificationMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -58,6 +58,14 @@
         <receiver android:name=".receiver.MyReceiver">
             <intent-filter android:priority="100">
                 <action android:name="com.fanda.zeng.bookpratice.MY_RECEIVER" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".widget.MyAppWidgetProvider">
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/appwidget_provider_info"/>
+            <intent-filter>
+                <action android:name="com.fanda.zeng.bookpratice.action.CLICK" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
         </receiver>
 
