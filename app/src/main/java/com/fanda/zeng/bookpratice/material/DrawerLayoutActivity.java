@@ -94,7 +94,7 @@ public class DrawerLayoutActivity extends BaseActivity implements NavigationView
 
     private void initRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        fruitAdapter = new CardViewFruitAdapter(fruitList);
+        fruitAdapter = new CardViewFruitAdapter(fruitList,this);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(fruitAdapter);
     }

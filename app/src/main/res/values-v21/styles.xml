@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="FruitActivityTheme" parent="AppTheme" >
+    <style name="FruitActivityTheme" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+        <!--A退出的动画和B进入的动画同步进行-->
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <!--B返回的动画和A重新进入的动画同步进行-->
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
     </style>
 </resources>

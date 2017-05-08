@@ -1,19 +1,31 @@
 package com.fanda.zeng.bookpratice.material;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionSet;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.fanda.zeng.bookpratice.R;
 import com.fanda.zeng.bookpratice.activity.BaseActivity;
+import com.fanda.zeng.bookpratice.util.TransitionHelper;
 
 /**
  * Created by 曾凡达 on 2017/3/20.
@@ -33,20 +45,84 @@ public class FruitDetailActivity extends BaseActivity {
     private String fruitName;
     private int fruitImageId;
 
-    public static void openActivity(Context context ,String name, int imageId) {
-        Intent intent = new Intent(context, FruitDetailActivity.class);
-        intent.putExtra(FruitDetailActivity.FRUIT_NAME,name);
-        intent.putExtra(FruitDetailActivity.FRUIT_IMAGE_ID,imageId);
-        context.startActivity(intent);
+    public static void openActivity(Activity activity, String name, int imageId) {
+        Intent intent = new Intent(activity, FruitDetailActivity.class);
+        intent.putExtra(FruitDetailActivity.FRUIT_NAME, name);
+        intent.putExtra(FruitDetailActivity.FRUIT_IMAGE_ID, imageId);
+        activity.startActivity(intent);
+    }
+
+    /**
+     * 内容变换转场跳转
+     *
+     * @param activity
+     * @param name
+     * @param imageId
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void openTransitionActivity(Activity activity, String name, int imageId) {
+        Intent intent = new Intent(activity, FruitDetailActivity.class);
+        intent.putExtra(FruitDetailActivity.FRUIT_NAME, name);
+        intent.putExtra(FruitDetailActivity.FRUIT_IMAGE_ID, imageId);
+        Pair<View, String>[] pairs = TransitionHelper.createSafeTransition(activity, false);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs);
+        activity.startActivity(intent, compat.toBundle());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void openShareTransitionActivity(Activity activity, String name, int imageId, Pair... pairs) {
+        Intent intent = new Intent(activity, FruitDetailActivity.class);
+        intent.putExtra(FruitDetailActivity.FRUIT_NAME, name);
+        intent.putExtra(FruitDetailActivity.FRUIT_IMAGE_ID, imageId);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs);
+        activity.startActivity(intent, compat.toBundle());
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fruit_detail);
+        setupWindowAnimations();
+        setupShareWindowAnimations();
         initDatas();
         initViews();
         setDatas();
+    }
+
+    private void setupShareWindowAnimations() {
+
+        TransitionSet transitionSet= null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            transitionSet = new TransitionSet();
+            //改变view的位置
+//            ChangePositionTransition changePositionTransition=new ChangePositionTransition();
+//            ColorTransition colorTransition=new ColorTransition(getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorAccent));
+//            //view做RevealTransition
+//            CircleShareElemEnterTransition shareElemEnterRevealTransition=new CircleShareElemEnterTransition(rightTop);
+//
+//            transitionSet.addTransition(shareElemEnterRevealTransition);
+//            transitionSet.addTransition(colorTransition);
+//            transitionSet.addTransition(changePositionTransition);
+//
+//            transitionSet.addTarget(R.id.rightTop);
+//            transitionSet.setDuration(500);
+//            getWindow().setSharedElementEnterTransition(transitionSet);
+        }
+
+
+    }
+
+    private void setupWindowAnimations() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Slide slide = new Slide();
+//            slide.setSlideEdge(Gravity.RIGHT);
+//            slide.setDuration(500);
+//            getWindow().setEnterTransition(slide);
+
+//            ChangeBounds changeBounds = new ChangeBounds();
+//            changeBounds.setDuration(500);
+//            getWindow().setSharedElementEnterTransition(changeBounds);
+        }
     }
 
     private void setDatas() {
@@ -65,7 +141,7 @@ public class FruitDetailActivity extends BaseActivity {
 
     private void initDatas() {
         fruitName = getIntent().getStringExtra(FRUIT_NAME);
-        fruitImageId = getIntent().getIntExtra(FRUIT_IMAGE_ID,0);
+        fruitImageId = getIntent().getIntExtra(FRUIT_IMAGE_ID, 0);
 
     }
 
@@ -85,9 +161,14 @@ public class FruitDetailActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAfterTransition();//用这个结束方法
+                } else {
+                    finish();
+                }
                 break;
         }
         return true;
     }
+
 }

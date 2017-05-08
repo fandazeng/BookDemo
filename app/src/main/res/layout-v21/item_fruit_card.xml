@@ -15,7 +15,7 @@
             android:id="@+id/iv_fruit_image"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:transitionName="@string/transition_fruit_icon"
+            android:transitionName="fruitIcon"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
-            android:transitionName="@string/transition_fruit_name"
+            android:transitionName="fruitName"
             android:textSize="16sp" />
 
     </LinearLayout>

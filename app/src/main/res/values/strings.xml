@@ -7,4 +7,6 @@
     <string name="this_second_class">我是第二个类</string>
     <string name="show_alertDialog">显示警告框</string>
     <string name="show_alertProgress">显示进度条</string>
+    <string name="transition_fruit_icon">fruitIcon</string>
+    <string name="transition_fruit_name">fruitName</string>
 </resources>
