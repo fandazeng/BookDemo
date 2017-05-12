@@ -1,5 +1,6 @@
 package com.fanda.zeng.bookpratice.activity;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -74,6 +75,17 @@ public class BaseActivity extends AppCompatActivity {
                     });
             builder.create().show();
         }
+    }
+
+    /**
+     *
+     * 判断mainactivity是否处于栈顶
+     * @return  true在栈顶false不在栈顶
+     */
+    private boolean isMainActivityTop(){
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        String name = manager.getRunningTasks(1).get(0).topActivity.getClassName();
+        return name.equals(MainActivity.class.getName());
     }
 
 }
