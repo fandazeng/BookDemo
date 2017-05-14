@@ -169,7 +169,7 @@ public class WeatherWaitingView extends View {
 
         //线伸长动画
         ObjectAnimator lineAnimation = ObjectAnimator.ofFloat(this, "sun_line_width", 0, sun_line_width);
-        lineAnimation.setDuration(1000);
+        lineAnimation.setDuration(500);
 
         ObjectAnimator rotateAnimation = ObjectAnimator.ofFloat(this, "degree", 0, 360);
         rotateAnimation.setDuration(50000);
@@ -177,7 +177,7 @@ public class WeatherWaitingView extends View {
 
         //组合
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.play(rotateAnimation).after(lineAnimation).after(obAnimation);
+        animatorSet.play(rotateAnimation).with(lineAnimation).after(obAnimation);
         animatorSet.start();
 
     }
@@ -208,7 +208,7 @@ public class WeatherWaitingView extends View {
     private void drawBg(Canvas canvas) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), sun_bg_src);
         Matrix matric = new Matrix();
-        matric.postScale(1.6f, 1.6f);
+        matric.postScale(1.8f, 1.8f);
         canvas.drawBitmap(bitmap, matric, null);
 
     }

@@ -10,8 +10,10 @@ import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.fanda.zeng.bookpratice.R;
@@ -129,4 +131,15 @@ public class DownloadFileService extends Service {
         return builder.build();
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d("service", "onCreate");
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+       Log.d("service", "onStartCommand");
+        return super.onStartCommand(intent, flags, startId);
+    }
 }

@@ -3,6 +3,7 @@ package com.fanda.zeng.bookpratice.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -15,7 +16,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
     private Context context;
 
     public static final String CREATE_TABLE = "create table Book ("
-            + "id integer primary key  autoincrement,"
+            + "id integer primary key autoincrement,"
             + "author text,"
             + "price real,"
             + "pagges integer,"
@@ -30,10 +31,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
         Toast.makeText(context, "create table success", Toast.LENGTH_SHORT).show();
+        Log.d("database", "onCreate");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("drop table if exists Book");
+        Log.d("database", "onUpgrade");
+        onCreate(db);
     }
 }

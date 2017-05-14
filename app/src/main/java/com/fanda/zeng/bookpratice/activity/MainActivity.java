@@ -1,17 +1,20 @@
 package com.fanda.zeng.bookpratice.activity;
 
 import android.content.Intent;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.fanda.zeng.bookpratice.R;
 
 public class MainActivity extends BaseActivity {
 
-    private static final String TAG = "NotificationMainActivity";
+    private static final String TAG = "MainActivity";
 
     private static final int REQUEST_MAIN = 1;
 
@@ -20,6 +23,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, "Tasd id is"+ getTaskId());
+        WindowManager windowManager = getWindowManager();
+        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyWakelockTag");
     }
 
     @Override
