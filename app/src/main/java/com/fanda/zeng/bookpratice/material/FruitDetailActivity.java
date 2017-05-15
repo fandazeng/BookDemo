@@ -1,7 +1,6 @@
 package com.fanda.zeng.bookpratice.material;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.transition.ChangeBounds;
-import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionSet;
 import android.view.Gravity;
@@ -82,7 +80,7 @@ public class FruitDetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fruit_detail);
-        setupWindowAnimations();
+//        setupWindowAnimations();
         setupShareWindowAnimations();
         initDatas();
         initViews();
@@ -106,7 +104,7 @@ public class FruitDetailActivity extends BaseActivity {
 //
 //            transitionSet.addTarget(R.id.rightTop);
 //            transitionSet.setDuration(500);
-//            getWindow().setSharedElementEnterTransition(transitionSet);
+            getWindow().setSharedElementEnterTransition(new ChangeBounds());
         }
 
 
@@ -114,14 +112,15 @@ public class FruitDetailActivity extends BaseActivity {
 
     private void setupWindowAnimations() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Slide slide = new Slide();
-//            slide.setSlideEdge(Gravity.RIGHT);
-//            slide.setDuration(500);
-//            getWindow().setEnterTransition(slide);
+            TransitionSet transitionSet = new TransitionSet();
 
-//            ChangeBounds changeBounds = new ChangeBounds();
-//            changeBounds.setDuration(500);
-//            getWindow().setSharedElementEnterTransition(changeBounds);
+            Slide slide2 = new Slide();
+            slide2.setSlideEdge(Gravity.BOTTOM);
+            slide2.setDuration(500);
+
+            transitionSet.addTransition(slide2);
+            getWindow().setEnterTransition(transitionSet);
+
         }
     }
 
